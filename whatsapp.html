@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>WhatsApp Linker - Clever Bear</title>
+    <link rel="icon" type="image/png" href="miniLogo2_limpio-removebg-preview.png">
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #121212; color: #ffffff; margin: 0; padding-top: 100px; display: flex; flex-direction: column; align-items: center; }
+        
+        /* Menú de Navegación */
+        nav { background-color: #1a1a1a; width: 100%; position: fixed; top: 0; left: 0; display: flex; justify-content: space-between; align-items: center; padding: 10px 30px; box-sizing: border-box; border-bottom: 2px solid #b18e69; box-shadow: 0 4px 10px rgba(0,0,0,0.5); z-index: 1000; }
+        .logo-contenedor { display: flex; align-items: center; text-decoration: none; }
+        .logo-contenedor img { height: 50px; width: auto; margin-right: 12px; }
+        .logo-contenedor span { font-size: 20px; font-weight: bold; color: #e6e1d5; }
+        .enlaces a { color: #e6e1d5; text-decoration: none; margin-left: 20px; font-size: 14px; transition: all 0.3s; padding: 8px 12px; border-radius: 6px; }
+        .enlaces a:hover { color: #ffffff; background-color: #b18e69; }
+        .enlaces a.activo { color: #ffffff; background-color: #8c7052; font-weight: bold; }
+
+        /* Estilos de la Herramienta */
+        .tarjeta-herramienta { background-color: #1e1e1e; padding: 30px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.6); width: 100%; max-width: 420px; border-top: 5px solid #b18e69; }
+        h2 { text-align: center; color: #e6e1d5; margin-top: 0; }
+        label { font-size: 14px; color: #aaaaaa; display: block; margin-top: 15px; }
+        input, textarea { width: 90%; padding: 12px; margin: 8px 0; border-radius: 6px; border: 1px solid #333; background: #2a2a2a; color: white; font-size: 16px; font-family: inherit; }
+        input:focus, textarea:focus { outline: none; border-color: #b18e69; }
+        textarea { resize: vertical; min-height: 80px; }
+        
+        .resultado-caja { background-color: #2a2a2a; padding: 15px; border-radius: 6px; text-align: center; margin-top: 20px; border: 1px solid #333; word-break: break-all; }
+        .enlace-generado { color: #b18e69; font-weight: bold; font-size: 14px; margin: 10px 0; }
+        button { background-color: #b18e69; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: background 0.3s; width: 100%; margin-top: 10px; }
+        button:hover { background-color: #8c7052; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo-contenedor">
+            <img src="logo2_limpio-removebg-preview.png" alt="Clever Bear Logo">
+        </a>
+        <div class="enlaces">
+            <a href="index.html">Calc. IVA</a>
+            <a href="whatsapp.html" class="activo">WhatsApp Linker</a> 
+            <a href="passwords.html">Secure Passwords</a>
+        </div>
+    </nav>
+
+    <div class="tarjeta-herramienta">
+        <h2>Generador Enlace WhatsApp</h2>
+        
+        <label for="telefono">Número de teléfono (con código de país, ej: 34600112233):</label>
+        <input type="number" id="telefono" placeholder="34600000000">
+
+        <label for="mensaje">Mensaje predeterminado (opcional):</label>
+        <textarea id="mensaje" placeholder="Hola, me interesa pedir información..."></textarea>
+
+        <div class="resultado-caja">
+            <p style="margin-top:0; color:#aaaaaa; font-size:14px;">Tu enlace generado:</p>
+            <div class="enlace-generado" id="resultadoLink">https://wa.me/</div>
+            <button id="btnCopiar">Copiar Enlace</button>
+        </div>
+    </div>
+
+    <script>
+        const inputTelefono = document.getElementById('telefono');
+        const inputMensaje = document.getElementById('mensaje');
+        const resultadoLink = document.getElementById('resultadoLink');
+        const btnCopiar = document.getElementById('btnCopiar');
+
+        function generarEnlace() {
+            let tel = inputTelefono.value;
+            let msg = inputMensaje.value;
+            
+            // encodeURIComponent transforma los espacios en %20 para que la URL sea válida
+            let enlaceFinal = `https://wa.me/${tel}?text=${encodeURIComponent(msg)}`;
+            
+            // Si no hay teléfono, mostramos la base
+            if(tel === "") {
+                resultadoLink.innerText = "https://wa.me/";
+            } else {
+                resultadoLink.innerText = enlaceFinal;
+            }
+        }
+
+        inputTelefono.addEventListener('input', generarEnlace);
+        inputMensaje.addEventListener('input', generarEnlace);
+
+        // Lógica para copiar al portapapeles
+        btnCopiar.addEventListener('click', () => {
+            navigator.clipboard.writeText(resultadoLink.innerText);
+            btnCopiar.innerText = "¡Copiado!";
+            btnCopiar.style.backgroundColor = "#4CAF50"; // Cambia a verde
+            
+            // Vuelve a la normalidad después de 2 segundos
+            setTimeout(() => {
+                btnCopiar.innerText = "Copiar Enlace";
+                btnCopiar.style.backgroundColor = "#b18e69";
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
