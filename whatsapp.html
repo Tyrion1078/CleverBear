@@ -7,8 +7,6 @@
     <link rel="icon" type="image/png" href="miniLogo2_limpio-removebg-preview.png">
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #121212; color: #ffffff; margin: 0; padding-top: 100px; display: flex; flex-direction: column; align-items: center; }
-        
-        /* Menú de Navegación */
         nav { background-color: #1a1a1a; width: 100%; position: fixed; top: 0; left: 0; display: flex; justify-content: space-between; align-items: center; padding: 10px 30px; box-sizing: border-box; border-bottom: 2px solid #b18e69; box-shadow: 0 4px 10px rgba(0,0,0,0.5); z-index: 1000; }
         .logo-contenedor { display: flex; align-items: center; text-decoration: none; }
         .logo-contenedor img { height: 50px; width: auto; margin-right: 12px; }
@@ -16,54 +14,32 @@
         .enlaces a { color: #e6e1d5; text-decoration: none; margin-left: 20px; font-size: 14px; transition: all 0.3s; padding: 8px 12px; border-radius: 6px; }
         .enlaces a:hover { color: #ffffff; background-color: #b18e69; }
         .enlaces a.activo { color: #ffffff; background-color: #8c7052; font-weight: bold; }
-
-        /* Estilos de la Herramienta */
         .tarjeta-herramienta { background-color: #1e1e1e; padding: 30px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.6); width: 100%; max-width: 420px; border-top: 5px solid #b18e69; }
         h2 { text-align: center; color: #e6e1d5; margin-top: 0; }
         label { font-size: 14px; color: #aaaaaa; display: block; margin-top: 15px; }
         input, textarea { width: 90%; padding: 12px; margin: 8px 0; border-radius: 6px; border: 1px solid #333; background: #2a2a2a; color: white; font-size: 16px; font-family: inherit; }
         input:focus, textarea:focus { outline: none; border-color: #b18e69; }
         textarea { resize: vertical; min-height: 80px; }
-        
         .resultado-caja { background-color: #2a2a2a; padding: 15px; border-radius: 6px; text-align: center; margin-top: 20px; border: 1px solid #333; word-break: break-all; }
         .enlace-generado { color: #b18e69; font-weight: bold; font-size: 14px; margin: 10px 0; }
         button { background-color: #b18e69; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: background 0.3s; width: 100%; margin-top: 10px; }
         button:hover { background-color: #8c7052; }
-        /* --- AJUSTES MÁGICOS PARA MÓVILES --- */
-        * { box-sizing: border-box; } /* Esto evita que los recuadros se corten */
-
+        * { box-sizing: border-box; }
         @media (max-width: 600px) {
-            nav {
-                flex-direction: column; /* Pone el logo arriba y los botones abajo */
-                padding: 10px;
-            }
-            .logo-contenedor {
-                margin-bottom: 10px;
-            }
-            .enlaces {
-                display: flex;
-                flex-wrap: wrap; /* Si los botones no caben, bajan de línea solos */
-                justify-content: center;
-            }
-            .enlaces a {
-                margin: 5px;
-                font-size: 13px; /* Letra un poco más pequeña en móvil */
-            }
-            body {
-                padding-top: 150px; /* Damos más espacio porque el menú ahora es más alto */
-            }
-            .tarjeta-herramienta {
-                margin-top: 10px;
-                width: 95%; /* Da un pequeño margen a los lados para que no se pegue a la pantalla */
-            }
+            nav { flex-direction: column; padding: 10px; }
+            .logo-contenedor { margin-bottom: 10px; }
+            .enlaces { display: flex; flex-wrap: wrap; justify-content: center; }
+            .enlaces a { margin: 5px; font-size: 13px; }
+            body { padding-top: 150px; }
+            .tarjeta-herramienta { margin-top: 10px; width: 95%; }
         }
     </style>
 </head>
 <body>
-
     <nav>
-        <a href="#" class="logo-contenedor">
+        <a href="index.html" class="logo-contenedor">
             <img src="logo2_limpio-removebg-preview.png" alt="Clever Bear Logo">
+            <span>Clever Bear</span>
         </a>
         <div class="enlaces">
             <a href="index.html">Calc. IVA</a>
@@ -74,18 +50,24 @@
 
     <div class="tarjeta-herramienta">
         <h2>Generador Enlace WhatsApp</h2>
-        
-        <label for="telefono">Número de teléfono (con código de país, ej: 34600112233):</label>
+        <label for="telefono">Teléfono (ej: 34600112233):</label>
         <input type="number" id="telefono" placeholder="34600000000">
-
-        <label for="mensaje">Mensaje predeterminado (opcional):</label>
-        <textarea id="mensaje" placeholder="Hola, me interesa pedir información..."></textarea>
-
+        <label for="mensaje">Mensaje inicial (opcional):</label>
+        <textarea id="mensaje" placeholder="Hola, me interesa..."></textarea>
         <div class="resultado-caja">
-            <p style="margin-top:0; color:#aaaaaa; font-size:14px;">Tu enlace generado:</p>
             <div class="enlace-generado" id="resultadoLink">https://wa.me/</div>
             <button id="btnCopiar">Copiar Enlace</button>
         </div>
+    </div>
+
+    <div style="max-width: 600px; margin: 40px auto; padding: 20px; color: #aaaaaa; line-height: 1.6; font-size: 15px;">
+        <h3 style="color: #b18e69;">¿Para qué sirve un enlace de WhatsApp?</h3>
+        <p>El WhatsApp Linker permite crear enlaces personalizados para que tus clientes puedan abrir un chat contigo sin guardar tu número. Es perfecto para redes sociales como Instagram o TikTok.</p>
+        <h3 style="color: #b18e69;">Ventajas</h3>
+        <ul style="padding-left: 20px;">
+            <li><strong>Cero fricción:</strong> Un solo clic para empezar a hablar.</li>
+            <li><strong>Mensajes predefinidos:</strong> Ahorra tiempo configurando un saludo inicial.</li>
+        </ul>
     </div>
 
     <script>
@@ -93,36 +75,18 @@
         const inputMensaje = document.getElementById('mensaje');
         const resultadoLink = document.getElementById('resultadoLink');
         const btnCopiar = document.getElementById('btnCopiar');
-
         function generarEnlace() {
             let tel = inputTelefono.value;
             let msg = inputMensaje.value;
-            
-            // encodeURIComponent transforma los espacios en %20 para que la URL sea válida
             let enlaceFinal = `https://wa.me/${tel}?text=${encodeURIComponent(msg)}`;
-            
-            // Si no hay teléfono, mostramos la base
-            if(tel === "") {
-                resultadoLink.innerText = "https://wa.me/";
-            } else {
-                resultadoLink.innerText = enlaceFinal;
-            }
+            resultadoLink.innerText = tel === "" ? "https://wa.me/" : enlaceFinal;
         }
-
         inputTelefono.addEventListener('input', generarEnlace);
         inputMensaje.addEventListener('input', generarEnlace);
-
-        // Lógica para copiar al portapapeles
         btnCopiar.addEventListener('click', () => {
             navigator.clipboard.writeText(resultadoLink.innerText);
             btnCopiar.innerText = "¡Copiado!";
-            btnCopiar.style.backgroundColor = "#4CAF50"; // Cambia a verde
-            
-            // Vuelve a la normalidad después de 2 segundos
-            setTimeout(() => {
-                btnCopiar.innerText = "Copiar Enlace";
-                btnCopiar.style.backgroundColor = "#b18e69";
-            }, 2000);
+            setTimeout(() => { btnCopiar.innerText = "Copiar Enlace"; }, 2000);
         });
     </script>
 </body>

@@ -6,163 +6,43 @@
     <title>Calculadora de IVA - Clever Bear</title>
     <link rel="icon" type="image/png" href="miniLogo2_limpio-removebg-preview.png">
     <style>
-        /* Estilos generales */
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background-color: #121212; 
-            color: #ffffff; 
-            margin: 0;
-            padding-top: 100px; /* Espacio para el menú */
-            display: flex; 
-            flex-direction: column;
-            align-items: center; 
-        }
-
-        /* --- MENÚ SUPERIOR ACTUALIZADO CON TU LOGO --- */
-        nav {
-            /* Usamos la textura y color oscuro de tu fondo para el menú */
-            background-color: #1a1a1a;
-            /* Si tienes la textura, podrías poner: 
-               background-image: url('tu-textura.jpg'); background-size: cover; */
-            width: 100%;
-            position: fixed; /* Se queda fija arriba al hacer scroll */
-            top: 0;
-            left: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 30px;
-            box-sizing: border-box;
-            /* Borde inferior color cobre a juego con tu logo */
-            border-bottom: 2px solid #b18e69; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            z-index: 1000; /* Siempre por encima */
-        }
-
-        /* Contenedor del logo y texto */
-        .logo-contenedor {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-
-        /* La imagen del oso (aislada, con fondo transparente) */
-        .logo-contenedor img {
-            height: 50px; /* Ajusta el tamaño */
-            width: auto;
-            margin-right: 12px;
-        }
-
-        /* El texto "Clever Bear" en el menú */
-        .logo-contenedor span {
-            font-size: 20px;
-            font-weight: bold;
-            color: #e6e1d5; /* Color crema de tu texto */
-            font-family: 'Segoe UI Semibold', sans-serif;
-        }
-
-        /* Enlaces del menú */
-        .enlaces a {
-            color: #e6e1d5; /* Color crema base */
-            text-decoration: none;
-            margin-left: 20px;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s;
-            padding: 8px 12px;
-            border-radius: 6px;
-        }
-
-        /* Efecto hover con el color cobre de tu logo */
-        .enlaces a:hover { 
-            color: #ffffff;
-            background-color: #b18e69; /* Fondo cobre */
-            box-shadow: 0 0 8px rgba(177, 142, 105, 0.5);
-        }
-
-        /* Enlace de la herramienta actual */
-        .enlaces a.activo { 
-            color: #ffffff;
-            background-color: #8c7052; /* Cobre más oscuro */
-            font-weight: bold; 
-        }
-        /* ------------------------------------------- */
-
-        /* La tarjeta de la herramienta (Igual que antes, con detalles color cobre) */
-        .tarjeta-herramienta {
-            background-color: #1e1e1e;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.6);
-            width: 100%;
-            max-width: 420px;
-            margin-top: 40px;
-            border-top: 5px solid #b18e69; /* Borde color cobre */
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #121212; color: #ffffff; margin: 0; padding-top: 100px; display: flex; flex-direction: column; align-items: center; }
+        nav { background-color: #1a1a1a; width: 100%; position: fixed; top: 0; left: 0; display: flex; justify-content: space-between; align-items: center; padding: 10px 30px; box-sizing: border-box; border-bottom: 2px solid #b18e69; box-shadow: 0 4px 10px rgba(0,0,0,0.5); z-index: 1000; }
+        .logo-contenedor { display: flex; align-items: center; text-decoration: none; }
+        .logo-contenedor img { height: 50px; width: auto; margin-right: 12px; }
+        .logo-contenedor span { font-size: 20px; font-weight: bold; color: #e6e1d5; }
+        .enlaces a { color: #e6e1d5; text-decoration: none; margin-left: 20px; font-size: 14px; transition: all 0.3s; padding: 8px 12px; border-radius: 6px; }
+        .enlaces a:hover { color: #ffffff; background-color: #b18e69; }
+        .enlaces a.activo { color: #ffffff; background-color: #8c7052; font-weight: bold; }
+        .tarjeta-herramienta { background-color: #1e1e1e; padding: 30px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.6); width: 100%; max-width: 420px; margin-top: 40px; border-top: 5px solid #b18e69; }
         h2 { text-align: center; color: #e6e1d5; margin-top: 0; }
         label { font-size: 14px; color: #aaaaaa; }
-        input, select { 
-            width: 90%; 
-            padding: 12px; 
-            margin: 8px 0 20px 0; 
-            border-radius: 6px; 
-            border: 1px solid #333; 
-            background: #2a2a2a;
-            color: white;
-            font-size: 16px;
-        }
+        input, select { width: 90%; padding: 12px; margin: 8px 0 20px 0; border-radius: 6px; border: 1px solid #333; background: #2a2a2a; color: white; font-size: 16px; }
         input:focus, select:focus { outline: none; border-color: #b18e69; }
-        .resultado-caja { 
-            background-color: #2a2a2a; 
-            padding: 15px; 
-            border-radius: 6px; 
-            text-align: center; 
-            margin-top: 10px; 
-            border: 1px solid #333;
-        }
-        .iva-label { font-size: 14px; color: #aaaaaa; }
-        .total-label { font-size: 14px; color: #aaaaaa; }
+        .resultado-caja { background-color: #2a2a2a; padding: 15px; border-radius: 6px; text-align: center; margin-top: 10px; border: 1px solid #333; }
+        .iva-label, .total-label { font-size: 14px; color: #aaaaaa; }
         .cantidad-iva { font-size: 16px; color: #e6e1d5; font-weight: bold; }
-        .total { font-size: 28px; color: #b18e69; font-weight: bold; } /* Total color cobre */
-/* --- AJUSTES MÁGICOS PARA MÓVILES --- */
-        * { box-sizing: border-box; } /* Esto evita que los recuadros se corten */
+        .total { font-size: 28px; color: #b18e69; font-weight: bold; }
 
+        * { box-sizing: border-box; }
         @media (max-width: 600px) {
-            nav {
-                flex-direction: column; /* Pone el logo arriba y los botones abajo */
-                padding: 10px;
-            }
-            .logo-contenedor {
-                margin-bottom: 10px;
-            }
-            .enlaces {
-                display: flex;
-                flex-wrap: wrap; /* Si los botones no caben, bajan de línea solos */
-                justify-content: center;
-            }
-            .enlaces a {
-                margin: 5px;
-                font-size: 13px; /* Letra un poco más pequeña en móvil */
-            }
-            body {
-                padding-top: 150px; /* Damos más espacio porque el menú ahora es más alto */
-            }
-            .tarjeta-herramienta {
-                margin-top: 10px;
-                width: 95%; /* Da un pequeño margen a los lados para que no se pegue a la pantalla */
-            }
+            nav { flex-direction: column; padding: 10px; }
+            .logo-contenedor { margin-bottom: 10px; }
+            .enlaces { display: flex; flex-wrap: wrap; justify-content: center; }
+            .enlaces a { margin: 5px; font-size: 13px; }
+            body { padding-top: 150px; }
+            .tarjeta-herramienta { margin-top: 10px; width: 95%; }
         }
     </style>
-    
 </head>
 <body>
-
     <nav>
-        <a href="#" class="logo-contenedor">
+        <a href="index.html" class="logo-contenedor">
             <img src="logo2_limpio-removebg-preview.png" alt="Clever Bear Logo">
+            <span>Clever Bear</span>
         </a>
         <div class="enlaces">
-           <a href="index.html">Calc. IVA</a>
+            <a href="index.html" class="activo">Calc. IVA</a>
             <a href="whatsapp.html">WhatsApp Linker</a> 
             <a href="passwords.html">Secure Passwords</a>
         </div>
@@ -172,31 +52,37 @@
         <h2>Calculadora rápida de IVA</h2>
         <label for="baseImponible">Cantidad sin IVA (Base Imponible):</label>
         <input type="number" id="baseImponible" placeholder="Ej: 150.50" step="0.01">
-
         <label for="tipoIva">Selecciona el tipo de IVA:</label>
         <select id="tipoIva">
             <option value="0.21">General (21%)</option>
             <option value="0.10">Reducido (10%)</option>
             <option value="0.04">Superreducido (4%)</option>
         </select>
-
         <div class="resultado-caja">
             <p><span class="iva-label">IVA a sumar:</span> <span class="cantidad-iva" id="cantidadIva">0.00</span> €</p>
             <p><span class="total-label">Precio Total:</span> <br><span class="total" id="precioTotal">0.00 €</span></p>
         </div>
     </div>
 
+    <div style="max-width: 600px; margin: 40px auto; padding: 20px; color: #aaaaaa; line-height: 1.6; font-size: 15px;">
+        <h3 style="color: #b18e69;">¿Cómo funciona esta Calculadora de IVA?</h3>
+        <p>Nuestra herramienta te permite calcular el Impuesto sobre el Valor Añadido (IVA) al instante y sin errores. Es ideal para autónomos, estudiantes y pequeñas empresas que necesitan calcular el total de sus facturas rápidamente.</p>
+        <h3 style="color: #b18e69;">Tipos de IVA aplicables</h3>
+        <ul style="padding-left: 20px;">
+            <li style="margin-bottom: 8px;"><strong>General (21%):</strong> Se aplica a la mayoría de productos y servicios cotidianos.</li>
+            <li style="margin-bottom: 8px;"><strong>Reducido (10%):</strong> Aplicable a hostelería y transporte.</li>
+            <li style="margin-bottom: 8px;"><strong>Superreducido (4%):</strong> Para bienes de primera necesidad.</li>
+        </ul>
+    </div>
+
     <script>
-        // Mismo JavaScript que antes, funciona perfecto
         const inputBase = document.getElementById('baseImponible');
         const selectIva = document.getElementById('tipoIva');
         const outputIva = document.getElementById('cantidadIva');
         const outputTotal = document.getElementById('precioTotal');
-
         function calcularIVA() {
             let base = parseFloat(inputBase.value);
             let porcentajeIva = parseFloat(selectIva.value);
-
             if (!isNaN(base)) {
                 let ivaCalculado = base * porcentajeIva;
                 let totalCalculado = base + ivaCalculado;
@@ -207,10 +93,8 @@
                 outputTotal.innerText = "0.00 €";
             }
         }
-
         inputBase.addEventListener('input', calcularIVA);
         selectIva.addEventListener('change', calcularIVA);
     </script>
-
 </body>
 </html>
