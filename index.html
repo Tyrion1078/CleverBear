@@ -124,7 +124,36 @@
         .total-label { font-size: 14px; color: #aaaaaa; }
         .cantidad-iva { font-size: 16px; color: #e6e1d5; font-weight: bold; }
         .total { font-size: 28px; color: #b18e69; font-weight: bold; } /* Total color cobre */
+/* --- AJUSTES MÁGICOS PARA MÓVILES --- */
+        * { box-sizing: border-box; } /* Esto evita que los recuadros se corten */
+
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column; /* Pone el logo arriba y los botones abajo */
+                padding: 10px;
+            }
+            .logo-contenedor {
+                margin-bottom: 10px;
+            }
+            .enlaces {
+                display: flex;
+                flex-wrap: wrap; /* Si los botones no caben, bajan de línea solos */
+                justify-content: center;
+            }
+            .enlaces a {
+                margin: 5px;
+                font-size: 13px; /* Letra un poco más pequeña en móvil */
+            }
+            body {
+                padding-top: 150px; /* Damos más espacio porque el menú ahora es más alto */
+            }
+            .tarjeta-herramienta {
+                margin-top: 10px;
+                width: 95%; /* Da un pequeño margen a los lados para que no se pegue a la pantalla */
+            }
+        }
     </style>
+    
 </head>
 <body>
 
